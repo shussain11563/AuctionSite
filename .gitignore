@@ -1,7 +1,5 @@
 /build/
 
-/.classPath/
+.classPath
 
-/.project/
-
-/.setting/
+.project
