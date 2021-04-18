@@ -1,19 +1,7 @@
 /build/
 
-/.classPath/
+/.settings/
 
-/.project/
-
-/.setting/
-
-.classpath
+.classPath
 
 .project
-
-*.iml
-
-.idea
-
-.settings
-
-/out
