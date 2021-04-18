@@ -5,3 +5,15 @@
 /.project/
 
 /.setting/
+
+.classpath
+
+.project
+
+*.iml
+
+.idea
+
+.settings
+
+/out
