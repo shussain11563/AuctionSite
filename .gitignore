@@ -1,6 +1,7 @@
-/.metadata/
+/build/
 
-Servers
+/.classPath/
 
-**/cs336Sample/*. 
+/.project/
 
+/.setting/
