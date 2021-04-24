@@ -7,13 +7,12 @@
 <title>Log In</title>
 </head>
 <body>
-
-<a href="loginBox.jsp">Login Page</a>|  
-<a href="createAccountPage.jsp">Create an Account</a>|  
-<a href="logout.jsp">Logout</a>|  
-<a href="profile.jsp">Profile</a> 
-
-
+<a href="loginBox.jsp">Login Page</a>
+  |  <a href="createAccountPage.jsp">Create an Account</a>
+  |  <a href="logout.jsp">Logout</a>
+  |  <a href="profile.jsp">Profile</a>
+  |  <a href="qaPage.jsp">Questions and Answers</a>
+<br><br>
 <%
 session=request.getSession(false); 
 String uname = (String) session.getAttribute("user");
