@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin Profile</title>
+    <title>Customer Representative Profile</title>
 </head>
 <body>
 <a href="loginBox.jsp">Login Page</a>|
