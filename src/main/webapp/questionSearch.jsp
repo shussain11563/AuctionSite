@@ -37,13 +37,13 @@
     Connection con = db.getConnection();
     try {
         String[] keywords = request.getParameter("keywords").strip().split("\\s+");
-        String str = "SELECT description, answer FROM question WHERE description LIKE '%" +
-                keywords[0] + "%'";
+        StringBuilder str = new StringBuilder("SELECT description, answer FROM question WHERE description LIKE '%" +
+                keywords[0] + "%'");
         for (int i = 1; i < keywords.length; i++) {
-            str += " OR description LIKE '%" + keywords[i] + "%'";
+            str.append(" OR description LIKE '%").append(keywords[i]).append("%'");
         }
-        str += ";";
-        ResultSet result = con.createStatement().executeQuery(str);
+        str.append(";");
+        ResultSet result = con.createStatement().executeQuery(str.toString());
 %>
 <table>
     <tr>
