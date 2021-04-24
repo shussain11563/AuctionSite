@@ -14,8 +14,7 @@
 <a href="createAccountPage.jsp">Create an Account</a>|  
 <a href="logout.jsp">Logout</a>|  
 <a href="profile.jsp">Profile</a> 
-
-
+<a href="searchPage.jsp">Search</a>
 
 	<%
 	try {
