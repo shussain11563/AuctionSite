@@ -19,27 +19,29 @@
     try {
       Statement stmt = con.createStatement();
       int formID = Integer.parseInt(request.getParameter("id"));
-      String str = "";
+      String str;
       switch (formID) {
         case 0:
           if (request.getParameter("password").isBlank() && request.getParameter("email").isBlank() && request.getParameter("phone").isBlank()) {
-            out.print("Nothing to change.");
+            out.print("No changes made to account " + request.getParameter("username") + ".");
             break;
           }
           if (!request.getParameter("password").isBlank()) {
-            str = "UPDATE enduser_account SET password = " + request.getParameter("password") +
-                    " WHERE username = '" + request.getParameter("username") + "';";
+            str = "UPDATE enduser_account SET password = '" + request.getParameter("password") +
+                    "' WHERE username = '" + request.getParameter("username") + "';";
+            stmt.executeUpdate(str);
           }
           if (!request.getParameter("email").isBlank()) {
-            str = "UPDATE enduser_account SET email = " + request.getParameter("email") +
-                    " WHERE username = '" + request.getParameter("username") + "';";
+            str = "UPDATE enduser_account SET email = '" + request.getParameter("email") +
+                    "' WHERE username = '" + request.getParameter("username") + "';";
+            stmt.executeUpdate(str);
           }
           if (!request.getParameter("phone").isBlank()) {
-            str = "UPDATE enduser_account SET phone = " + request.getParameter("phone") +
-                    " WHERE username = '" + request.getParameter("username") + "';";
+            str = "UPDATE enduser_account SET phone = '" + request.getParameter("phone") +
+                    "' WHERE username = '" + request.getParameter("username") + "';";
+            stmt.executeUpdate(str);
           }
 
-          stmt.executeUpdate(str);
           out.print("Edited account " + request.getParameter("username") + " successfully!");
           break;
         case 1:
