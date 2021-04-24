@@ -74,7 +74,7 @@
 		    session = request.getSession(false);
 		    session.setAttribute("user",newUser);
 		    session.setAttribute("pass",newPass);
-
+		    session.setAttribute("accountType",accountType);
 		}
 
 		//Run the query against the DB
