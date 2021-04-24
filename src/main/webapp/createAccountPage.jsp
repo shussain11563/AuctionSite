@@ -12,7 +12,6 @@
   |  <a href="logout.jsp">Logout</a>
   |  <a href="profile.jsp">Profile</a>
   |  <a href="qaPage.jsp">Questions and Answers</a>
-<br><br>
 <%
     session = request.getSession(false);
     String uname = (String) session.getAttribute("user");
@@ -20,7 +19,6 @@
     if (uname == null) {
 %>
 <h1>Create an Account</h1>
-<br>
 <form method="post" action="createAccount.jsp">
     <table>
         <tr>
@@ -44,12 +42,10 @@
     <input type="hidden" name="id" value="0">
     <input type="submit" value="Create Account">
 </form>
-<br>
 <%
-} else if (accountType.equals("admin_account")) {
+    } else if (accountType.equals("admin_account")) {
 %>
 <h1>Create Customer Representative Account</h1>
-<br>
 <form method="post" action="createAccount.jsp">
     <table>
         <tr>
@@ -65,13 +61,10 @@
     <input type="hidden" name="id" value="1">
     <input type="submit" value="Create Account">
 </form>
-<br>
 <%
     } else {
-        out.print("You cannot create a new account because you are logged in already, " + uname);
+        out.print("<br><br>You cannot create a new account because you are logged in already, " + uname);
     }
 %>
-
-
 </body>
 </html>
