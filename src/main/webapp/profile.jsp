@@ -1,6 +1,3 @@
-<%@ page import="com.cs336.pkg.ApplicationDB" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
