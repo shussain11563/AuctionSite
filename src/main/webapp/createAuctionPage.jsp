@@ -43,7 +43,7 @@
 		<td>Close Time</td><td><input type="time" name="close_time" step="1" required></td>
 		</tr>
 		<tr>
-		<td title= "Only visible to buyers.">Minimum Price</td><td><input type="number" min="0.00" step=any name="min_price" ></td>
+		<td title= "Only visible to buyers.">Minimum Price</td><td><input type="number" min="0.00" value=0 step=any name="min_price" required></td>
 		</tr>
 		</table>
 		<label for="createAuction"> Description: </label> 
