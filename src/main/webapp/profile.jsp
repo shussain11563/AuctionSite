@@ -12,7 +12,10 @@
   |  <a href="logout.jsp">Logout</a>
   |  <a href="profile.jsp">Profile</a>
   |  <a href="qaPage.jsp">Questions and Answers</a>
-<br><br>
+  |  <a href="searchPage.jsp">Search</a>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+	<a href="checkAlerts.jsp">Check alerts </a>
+</nav>
 <%
     session = request.getSession(false);
     String uname = (String) session.getAttribute("user");
