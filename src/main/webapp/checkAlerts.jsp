@@ -9,17 +9,16 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a href="loginBox.jsp">Login Page</a>
-    |  <a href="createAccountPage.jsp">Create an Account</a>
-    |  <a href="logout.jsp">Logout</a>
-    |  <a href="profile.jsp">Profile</a>
-    |  <a href="qaPage.jsp">Questions and Answers</a>
-    |  <a href="searchPage.jsp">Search</a>
-    |  <a href="checkAlerts.jsp">Check alerts </a>
-</nav>
-<br>
 <%
     session=request.getSession(false);
     String uname = (String) session.getAttribute("user");
@@ -48,7 +47,7 @@
         try {
             String data = "select c.title, b.open_date, b.close_date from clothing c, bid_selling_offers b, alerts a where " +
                     "c.productID = b.productID and b.productID = a.productID and a.username='" + uname + "' " +
-                    "and b.winner is null order by c.productID asc";
+                    "and b.winner is null order by c.productID;";
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);
             while (res.next()) {
@@ -69,7 +68,6 @@
     } %>
     </tbody>
 </table>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
-<!--Import some libraries that have classes that we need -->
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
-<!DOCTYPE html>
-
-
-
+         pageEncoding="ISO-8859-1" import="com.cs336.pkg.*" %>
+<%@ page import="java.sql.*" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Your Bids</title>
+    <title>Your Bids</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function () {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-
-<a href="logout.jsp">Logout</a>|  
-<a href="profile.jsp">Profile</a> 
-<a href="createAuctionPage.jsp">Create Auction</a> 
-<a href="bids.jsp">Your Bids</a> 
-
- 
-
-
-	<h1>Your Bids</h1>  
+<h1>Your Bids</h1>
 <%		
 
 ApplicationDB db = new ApplicationDB();	

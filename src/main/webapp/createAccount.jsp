@@ -1,28 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" import="com.cs336.pkg.*" %>
 <%@ page import="java.sql.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Create Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<a href="loginBox.jsp">Login Page</a>
-  |  <a href="createAccountPage.jsp">Create an Account</a>
-  |  <a href="logout.jsp">Logout</a>
-  |  <a href="profile.jsp">Profile</a>
-  |  <a href="qaPage.jsp">Questions and Answers</a>
-<br><br>
 <%
     try {
 
         //Get the database connection
         ApplicationDB db = new ApplicationDB();
         Connection con = db.getConnection();
-
-        //Create a SQL statement
-        Statement stmt = con.createStatement();
 
         //Get parameters from the HTML form at the index.jsp
         String newUser = request.getParameter("username");
@@ -32,7 +34,7 @@
 
 
         //Make an insert statement for the Sells table:
-        String insert = "";
+        String insert;
         if (request.getParameter("id").equals("0")) {
             insert = "INSERT INTO enduser_account(username, password, email, phone)"
                     + "VALUES (?, ?, ?, ?)";
