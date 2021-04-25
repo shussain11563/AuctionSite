@@ -11,6 +11,24 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table {
+            border: 1px solid;
+        }
+        td {
+            border: 1px solid;
+        }
+        div {
+            word-wrap: break-word;
+            hyphens: manual;
+        }
+        div.q {
+            width: 200px;
+        }
+        div.a {
+            width: 400px;
+        }
+    </style>
 </head>
 <div id="navigation">
 
@@ -26,7 +44,7 @@
     session = request.getSession(false);
     String uname = (String) session.getAttribute("user");
     if (uname == null) {
-        out.print("<br><br>You are not logged in!");
+        out.print("You are not logged in!");
     } else {
         try {
             ApplicationDB db = new ApplicationDB();
@@ -88,7 +106,7 @@
             con.close();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
-            out.print("<br><br>An SQL error occurred when trying to open this page :(");
+            out.print("An SQL error occurred when trying to open this page :(");
         }
     }
 %>

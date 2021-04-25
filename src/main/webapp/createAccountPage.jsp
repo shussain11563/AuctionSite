@@ -70,7 +70,7 @@
 </form>
 <%
     } else {
-        out.print("<br><br>You cannot create a new account because you are logged in already, " + uname);
+        out.print("You cannot create a new account because you are logged in already, " + uname);
     }
 %>
 </body>

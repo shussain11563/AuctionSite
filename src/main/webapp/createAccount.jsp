@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" import="com.cs336.pkg.*" %>
 <%@ page import="java.sql.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>Create Account</title>
@@ -27,9 +26,6 @@
         ApplicationDB db = new ApplicationDB();
         Connection con = db.getConnection();
 
-        //Create a SQL statement
-        Statement stmt = con.createStatement();
-
         //Get parameters from the HTML form at the index.jsp
         String newUser = request.getParameter("username");
         String newPass = request.getParameter("password");
@@ -38,7 +34,7 @@
 
 
         //Make an insert statement for the Sells table:
-        String insert = "";
+        String insert;
         if (request.getParameter("id").equals("0")) {
             insert = "INSERT INTO enduser_account(username, password, email, phone)"
                     + "VALUES (?, ?, ?, ?)";
