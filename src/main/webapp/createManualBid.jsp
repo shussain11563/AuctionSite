@@ -19,9 +19,6 @@
 <a href="createManualBidPage.jsp">Create Bid</a> 
 
 
- 
-
-
 	<%
 	try {
 
@@ -39,6 +36,7 @@
 		ps2.setString(1, newID);
 		ResultSet rs2 = ps2.executeQuery();
 		
+		// bid from current user
 		String check = "SELECT * FROM manual_bid WHERE bid_id = ? and username = ?";
 		PreparedStatement ps1 = con.prepareStatement(check);
 		ps1.setString(1, newID);
@@ -80,7 +78,7 @@
 							ps.executeUpdate();						
 							condition = 2;
 						}
-						else{
+						else if (rs1.getFloat("bid_val") < Integer.parseInt(bid_val)){
 							String updateBid = "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
 							PreparedStatement ps3 = con.prepareStatement(updateBid);
 							ps3.setString(1, bid_val);
@@ -88,6 +86,9 @@
 							ps3.setString(3, uname);
 							ps3.executeUpdate();
 							condition = 1;
+						}
+						else{
+							condition = 5;
 						}
 					}	
 					else{
@@ -116,6 +117,9 @@
 		}
 		else if (condition == 4){
 			out.print("Bid is over.");
+		}
+		else if (condition == 5){
+			out.print("Cannot lower bid value.");
 		}
 
 	} catch (Exception ex) {
