@@ -19,7 +19,7 @@
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a> 
 
-
+ 
 
 
 	<h1>Your Bids</h1>  

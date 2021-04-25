@@ -15,7 +15,7 @@
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a> 
 
-
+   
 
 	<%
 	try {
@@ -59,9 +59,19 @@
 			ps1.setString(3, uname);
 			ResultSet rs1 = ps1.executeQuery();
 			
-			
+			//Current user check
+			String temp3 = "SELECT * FROM bid_selling_offers b, manual_bid m where m.bid_id = b.bid_id and b.bid_id = ? and m.username = ?";
+			PreparedStatement ps4 = con.prepareStatement(temp3);
+			ps4.setString(1, bidID);
+			ps4.setString(2, uname);
+			ResultSet rs4 = ps4.executeQuery();
+
+
 
 			
+			
+
+
 			if ((today.compareTo(closeDate) > 0 || today.compareTo(closeDate) == 0) && currentTime.toLocalTime().isAfter(closeTime.toLocalTime())){
 				String winner = "SELECT * from manual_bid where bid_val=(select max(bid_val) from manual_bid where bid_id = ?)";
 				PreparedStatement ps2 = con.prepareStatement(winner);
@@ -75,20 +85,36 @@
 					PreparedStatement ps3 = con.prepareStatement(temp2);
 					ps3.setFloat(1, s);
 					ps3.setString(2, n);
-					ps3.setInt(3, nm);
-					ps3.setInt(4, 1);
+					ps3.setInt(3, 1);
+					ps3.setString(4, bidID);
 					
+
 					ps3.executeUpdate();
+					
 				}
-				if (reserve > 0){
-					if (reserve > bidVal && uname.equals(currentUser)){
-						out.print("No winner!");
-					}
-					else if (reserve < bidVal && uname.equals(currentUser)){
-						out.print("You are the winner.");
+				while (rs4.next()){
+					String win = rs4.getString("winner");
+					String current = rs4.getString("m.username");
+					float bidVal1 = rs4.getFloat("m.bid_val");
+					if (reserve > 0){ 
+						if (reserve > bidVal1 && uname.equals(win)){
+							out.print("No winner!");
+						}
+						else if (reserve < bidVal1 && uname.equals(win)){
+							out.print("You are the winner.");
+						}
+						else{
+							out.print("A winner was chosen and it wasn't you! :(");
+						}
 					}
 					else{
-						out.print("A winner was chosen and it wasn't you! :(");
+						if (uname.equals(win)){
+							out.print("You are the winner.");
+						}
+						else{
+							out.print("A winner was chosen and it wasn't you! :(");
+						}
+				
 					}
 				}
 			}
