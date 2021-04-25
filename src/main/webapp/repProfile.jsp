@@ -74,6 +74,7 @@
         con.close();
     } catch (SQLException throwable) {
         throwable.printStackTrace();
+        out.print("Unable to make changes :(");
     }
 %>
 
