@@ -20,50 +20,49 @@
 </script>
 <body>
 <h1>Your Bids</h1>
-<%
+<%		
 
-    ApplicationDB db = new ApplicationDB();
-    Connection con = db.getConnection();
+ApplicationDB db = new ApplicationDB();	
+Connection con = db.getConnection();
+Statement stmt = con.createStatement();
 
-    String uname = (String) session.getAttribute("user");
-    String temp = "SELECT * FROM manual_bid WHERE username =?";
+session=request.getSession(false); 
+String uname = (String) session.getAttribute("user");
+String temp = "SELECT * FROM manual_bid WHERE username =?";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(temp);
-        ps.setString(1, uname);
-        ResultSet rs = ps.executeQuery();
+PreparedStatement ps = con.prepareStatement(temp);
+ps.setString(1, uname);
+ResultSet rs = ps.executeQuery();
 
-        out.println("bidID &nbsp Bid Price <br>");
+out.println("bidID &nbsp Bid Price <br>");
 
-        while (rs.next()) {
-            int nm = rs.getInt("bid_id");
-            float s = rs.getFloat("bid_val");
-            out.println("</td><td>" + nm + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td>" + s + "</td></tr>");
-            out.println("<br>");
-        }
+while (rs.next()) 
+{  
+    String n = rs.getString("username");  
+    int nm = rs.getInt("bid_id");  
+    float s = rs.getFloat("bid_val");   
+    out.println("</td><td>" + nm + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td>" + s + "</td></tr>");  
+    out.println("<br>");
+}  
 
-        out.println("</table>");
-        out.println("</html></body>");
-        con.close();
-    } catch (SQLException throwable) {
-        throwable.printStackTrace();
-        out.print("Unable to load bids :(");
-    }
+out.println("</table>");  
+out.println("</html></body>");  
+con.close();  
 
 %>
-<br>
-<form method="post" action="bidsPage.jsp" id="bidsPage">
-    <table>
-        <tr>
-            <td>Bid Number</td>
-            <td><label>
-                <input type="number" min="0" name="bidID">
-            </label></td>
-        </tr>
-    </table>
-    <br/>
-    <input type="submit" value="Check Status">
-</form>
-<br>
+
+	<br>
+		<form method="post" action="bidsPage.jsp" id="bidsPage">
+		<table>
+		<tr>    
+		<td>Auction ID</td><td><input type="number"  min = "0" name="bidID"></td>
+		</tr>
+		</table>
+		<br/>
+		<input type="submit" value="Check Status">
+		</form>
+	<br>
+	
+
 </body>
 </html>
