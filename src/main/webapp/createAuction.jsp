@@ -60,8 +60,8 @@
 		String uname = (String) session.getAttribute("user");
 
 
-		String insertAuction = "INSERT INTO bid_selling_offers(title, productID, username, open_date, close_date, close_time, min_price, highest_bid, winner, description, status)"
-				+ "VALUES (?, LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, 0)";
+		String insertAuction = "INSERT INTO bid_selling_offers(title, productID, username, open_date, close_date, close_time, min_price, highest_bid, winner, description)"
+				+ "VALUES (?, LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)";
 		String insertProduct = "INSERT INTO clothing(title, brand, type)"
 				+ "VALUES (?, ?, ?)";
 		
@@ -88,7 +88,7 @@
 			ps.setString(6, minPrice);
 		}
 		ps.setInt(7, 0);
-		ps.setString(8, "To be announced.");
+		ps.setString(8, null);
 		ps.setString(9, newDescrip);
 		
 		
