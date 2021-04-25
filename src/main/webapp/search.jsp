@@ -98,11 +98,16 @@
     <%
         ApplicationDB db = new ApplicationDB();
         Connection conn = db.getConnection();
-        String data = "select * from bid_selling_offers b, clothing c where b.productID = c.productID and c.title like '%" + query
-                + "%';";
         try {
+            String[] queryWords = request.getParameter("query").strip().split("\\s+");
+            StringBuilder str = new StringBuilder("select * from bid_selling_offers b, clothing c where c.title like '%" +
+                    queryWords[0] + "%'");
+            for (int i = 1; i < queryWords.length; i++) {
+                str.append(" or title like '%").append(queryWords[i]).append("%'");
+            }
+            str.append(";");
             Statement stat = conn.createStatement();
-            ResultSet res = stat.executeQuery(data);
+            ResultSet res = stat.executeQuery(str.toString());
             while (res.next()) {
     %>
         <tr>

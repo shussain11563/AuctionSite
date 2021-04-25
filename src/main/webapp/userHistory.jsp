@@ -41,7 +41,7 @@
     <%
         ApplicationDB db = new ApplicationDB();
         Connection conn = db.getConnection();
-        String data = "select b.bid_id, c.title from bid_selling_offers b, clothing c where b.username='" +
+        String data = "select b.bid_id, c.title, b.open_date, b.close_date from bid_selling_offers b, clothing c where b.username='" +
                 username + "' and (b.productID = c.productID) order by bid_id;";
         try {
             Statement stat = conn.createStatement();
@@ -53,6 +53,8 @@
         </td>
         <td><%=res.getString("title")%>
         </td>
+        <td><%=res.getDate("open_date")%></td>
+        <td><%=res.getDate("close_date")%></td>
     </tr>
     <% } %>
     </tbody>
@@ -72,8 +74,9 @@
     <tbody>
     <%
             Statement stat2 = conn.createStatement();
-            String data2 = "select m.bid_id as bid_id, c.title from manual_bid m, clothing c where m.username='" +
-                    username + "' union select a.bid_number as bid_id, c.title from auto_bid a, clothing c where a.username='"
+            String data2 = "select m.bid_id as bid_id, c.title, b.open_date, b.close_date from manual_bid m, clothing c, bid_selling_offers b " +
+                    "where m.username='" + username + "' and b.productID = c.productID union select a.bid_number as " +
+                    "bid_id, c.title, b.open_date, b.close_date from auto_bid a, clothing c where b.productID = c.productID and a.username='"
                     + username + "' order by bid_id;";
             ResultSet res2 = stat2.executeQuery(data2);
             while (res2.next()) {
@@ -83,6 +86,8 @@
         </td>
         <td><%=res2.getString("title")%>
         </td>
+        <td><%=res2.getDate("open_date")%></td>
+        <td><%=res2.getDate("close_date")%></td>
     </tr>
 
     <%

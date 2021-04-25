@@ -74,8 +74,8 @@
             <th>Bid ID</th>
             <th>Seller (User)</th>
             <th>Product Title</th>
-            <th>Brand</th>
             <th>Type</th>
+            <th>Brand</th>
             <th>Open Date</th>
             <th>Close Date</th>
             <th>Highest Bid</th>
