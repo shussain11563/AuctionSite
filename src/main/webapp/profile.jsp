@@ -7,15 +7,16 @@
     <title>Profile</title>
 </head>
 <body>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 <a href="loginBox.jsp">Login Page</a>
   |  <a href="createAccountPage.jsp">Create an Account</a>
   |  <a href="logout.jsp">Logout</a>
   |  <a href="profile.jsp">Profile</a>
   |  <a href="qaPage.jsp">Questions and Answers</a>
   |  <a href="searchPage.jsp">Search</a>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-	<a href="checkAlerts.jsp">Check alerts </a>
+  |  <a href="checkAlerts.jsp">Check alerts </a>
 </nav>
+<br>
 <%
     session = request.getSession(false);
     String uname = (String) session.getAttribute("user");
