@@ -37,8 +37,7 @@
 <%
     ApplicationDB db = new ApplicationDB();
     Connection conn = db.getConnection();
-    String data = "select a.username, a.bid_val from auto_bid a where " +
-         "a.bid_number=" + bidID + " union select m.username, m.bid_val from manual_bid m"
+    String data = "select m.username, m.bid_val from manual_bid m"
          + " where m.bid_id=" + bidID + " order by bid_val;";
     try{
         Statement stat = conn.createStatement();
