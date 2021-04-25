@@ -14,7 +14,10 @@
 <a href="profile.jsp">Profile</a> 
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a>
+<a href="createAuctionPage.jsp">Create Auction</a> 
+<a href="bids.jsp">Your Bids</a> 
 <a href="createManualBidPage.jsp">Create Bid</a> 
+
  
 
 
@@ -78,14 +81,15 @@
 							condition = 2;
 						}
 						else{
-							String updateBid = "UPDATE manual_bid SET bid_val = ? where bid_id = ?";
+							String updateBid = "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
 							PreparedStatement ps3 = con.prepareStatement(updateBid);
 							ps3.setString(1, bid_val);
 							ps3.setString(2, newID);
+							ps3.setString(3, uname);
 							ps3.executeUpdate();
 							condition = 1;
 						}
-					}
+					}	
 					else{
 						out.print("Bid closed.");
 						break;
@@ -116,7 +120,7 @@
 
 	} catch (Exception ex) {
 		out.print(ex);
-		out.print("Sorry, this auction  doesn't exist.");
+		out.print("Sorry, this auction doesn't exist.");
 	}
 %>
 </body>

@@ -75,12 +75,18 @@
 		ps1.setString(3, type);
 		
 		
+		
 		ps.setString(1, newTitle);
 		ps.setString(2, uname);
 		ps.setString(3, openDate);
 		ps.setString(4, closeDate);
 		ps.setString(5, closeTime);
-		ps.setString(6, minPrice);
+		if (minPrice == null){
+			ps.setFloat(6, 0);
+
+		}else{
+			ps.setString(6, minPrice);
+		}
 		ps.setInt(7, 0);
 		ps.setString(8, "To be announced.");
 		ps.setString(9, newDescrip);

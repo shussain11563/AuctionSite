@@ -19,10 +19,10 @@
 		<form method="post" action="createAuction.jsp" id="createAuction">
 		<table>
 		<tr>    
-		<td>Title</td><td><input type="text" name="title"></td>
+		<td>Title</td><td><input type="text" name="title" required></td>
 		</tr>
 		<tr>    
-		<td>Brand</td><td><input type="text" name="brand"></td>
+		<td>Brand</td><td><input type="text" name="brand" required></td>
 		</tr>
 		<tr>    
 		<td>Choose a type:
@@ -34,16 +34,16 @@
  		</td>
 		</tr>
 		<tr>
-		<td>Start Date</td><td><input type="date" name="open_date" id = "openDate" value=<%= new java.sql.Date(System.currentTimeMillis()) %> min= <%=new java.sql.Date(System.currentTimeMillis()).toString() %>></td>
+		<td>Start Date</td><td><input type="date" name="open_date" id = "openDate" required value=<%= new java.sql.Date(System.currentTimeMillis()) %> min= <%=new java.sql.Date(System.currentTimeMillis()).toString() %>></td>
 		</tr>
 		<tr>
-		<td>Close Date</td><td><input type="date" name="close_date" min=<%= new java.sql.Date(System.currentTimeMillis()) %>></td>
+		<td>Close Date</td><td><input type="date" name="close_date" min=<%= new java.sql.Date(System.currentTimeMillis()) %> required></td>
 		</tr>
 		<tr>
-		<td>Close Time</td><td><input type="time" name="close_time" step="1"></td>
+		<td>Close Time</td><td><input type="time" name="close_time" step="1" required></td>
 		</tr>
 		<tr>
-		<td title= "Only visible to buyers.">Minimum Price</td><td><input type="number" min="0.00" step=any name="min_price"></td>
+		<td title= "Only visible to buyers.">Minimum Price</td><td><input type="number" min="0.00" step=any name="min_price" ></td>
 		</tr>
 		</table>
 		<label for="createAuction"> Description: </label> 
