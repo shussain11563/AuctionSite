@@ -96,7 +96,7 @@
 					String win = rs4.getString("winner");
 					String current = rs4.getString("m.username");
 					float bidVal1 = rs4.getFloat("m.bid_val");
-					if (reserve > 0){
+					if (reserve > 0){ 
 						if (reserve > bidVal1 && uname.equals(win)){
 							out.print("No winner!");
 						}

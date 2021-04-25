@@ -32,7 +32,7 @@
     	<option value="Accessory">Accessory</option>
  		 </select>
  		</td>
-		</tr>
+		</tr> 
 		<tr>
 		<td>Start Date</td><td><input type="date" name="open_date" id = "openDate" required value=<%= new java.sql.Date(System.currentTimeMillis()) %> min= <%=new java.sql.Date(System.currentTimeMillis()).toString() %>></td>
 		</tr>

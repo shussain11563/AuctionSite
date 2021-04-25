@@ -84,7 +84,7 @@
 		if (minPrice == null){
 			ps.setFloat(6, 0);
 
-		}else{
+		}else{ 
 			ps.setString(6, minPrice);
 		}
 		ps.setInt(7, 0);
