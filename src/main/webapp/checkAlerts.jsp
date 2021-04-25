@@ -39,14 +39,14 @@
             <th>Product Title</th>
             <th>Open Date</th>
             <th>Close Date</th>
-            <th>Remove Alert</th>
+            <th>Close Time</th>
         </tr>
     </thead>
     <tbody>
     <%
         try {
-            String data = "select c.title, b.open_date, b.close_date from clothing c, bid_selling_offers b, alerts a where " +
-                    "c.productID = b.productID and b.productID = a.productID and a.username='" + uname + "' " +
+            String data = "select * from clothing c, bid_selling_offers b, product_alerts p where " +
+                    "c.productID = b.productID and b.productID = p.productID and a.username='" + uname + "' " +
                     "and b.winner is null order by c.productID;";
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);
@@ -56,7 +56,7 @@
         <td><%=res.getString("title")%></td>
         <td><%=res.getDate("open_date")%></td>
         <td><%=res.getDate("close_date")%></td>
-        <td>X</td>
+        <td><%=res.getTime("close_time")%></td>
     </tr>
     <%
             }
