@@ -3,6 +3,10 @@
 <html>
 <head>
     <title>Create Auction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <div id="navigation">
 
@@ -16,6 +20,11 @@
 <body>
 <h1>Create an Auction</h1>
 <br>
+<%
+    if (session.getAttribute("user") == null) {
+        out.print("Please log in to create an auction.");
+    } else {
+%>
 <form method="post" action="createAuction.jsp" id="createAuction">
     <table>
         <tr>
@@ -71,7 +80,8 @@
               style="resize:none"> </textarea>
     <input type="submit" value="Create Auction">
 </form>
-<br>
-
+<%
+    }
+%>
 </body>
 </html>

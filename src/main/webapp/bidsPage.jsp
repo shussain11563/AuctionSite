@@ -3,8 +3,11 @@
 <%@ page import="java.sql.*, java.util.Date, java.text.*" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Insert title here</title>
+    <title>Bid Status</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <div id="navigation">
 
@@ -69,7 +72,7 @@
                     PreparedStatement ps3 = con.prepareStatement(temp2);
                     ps3.setFloat(1, s);
                     ps3.setString(2, n);
-                    ps3.setString(4, bidID);
+                    ps3.setString(3, bidID);
 
                     ps3.executeUpdate();
                 }
@@ -115,8 +118,8 @@
             }
         }
 
-    } catch (Exception ex) {
-        out.print(ex);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
         out.print("Sorry, the auction cannot be created.");
     }
 %>

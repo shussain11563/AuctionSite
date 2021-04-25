@@ -48,7 +48,7 @@
 </form>
 <%
     } else {
-        out.print("<br><br>You cannot log in because you are logged in already, " + uname);
+        out.print("You cannot log in because you are logged in already, " + uname);
     }
 %>
 
