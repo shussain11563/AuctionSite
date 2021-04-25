@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.cs336.pkg.ApplicationDB" %>
 <%@ page import="java.sql.*"%>
-<%@ page import="java.util.Arrays" %>
 <html>
 <head>
     <title>Search</title>
