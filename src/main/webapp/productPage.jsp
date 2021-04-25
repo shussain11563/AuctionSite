@@ -1,21 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login Page</title>
+<title>Log In</title>
 </head>
 <body>
-<h1>Auction</h1>  
+
 <a href="loginBox.jsp">Login Page</a>|  
 <a href="createAccountPage.jsp">Create an Account</a>|  
 <a href="logout.jsp">Logout</a>|  
 <a href="profile.jsp">Profile</a> 
-<a href="automaticAuctionTest.jsp">AuctionTest</a> 
-<p>Thus is login page</p>
-<p>this is a part 2 login page</p>
 
 
-
-	
 </body>
 </html>
