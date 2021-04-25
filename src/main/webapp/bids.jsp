@@ -29,6 +29,7 @@ ApplicationDB db = new ApplicationDB();
 Connection con = db.getConnection();
 Statement stmt = con.createStatement();
 
+session=request.getSession(false); 
 String uname = (String) session.getAttribute("user");
 String temp = "SELECT * FROM manual_bid WHERE username =?";
 
@@ -57,7 +58,7 @@ con.close();
 		<form method="post" action="bidsPage.jsp" id="bidsPage">
 		<table>
 		<tr>    
-		<td>Bid Number</td><td><input type="number"  min = "0" name="bidID"></td>
+		<td>Auction ID</td><td><input type="number"  min = "0" name="bidID"></td>
 		</tr>
 		</table>
 		<br/>
