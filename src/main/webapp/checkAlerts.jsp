@@ -46,7 +46,7 @@
     <%
         try {
             String data = "select * from clothing c, bid_selling_offers b, product_alerts p where " +
-                    "c.productID = b.productID and b.productID = p.productID and a.username='" + uname + "' " +
+                    "c.productID = b.productID and b.productID = p.productID and p.username='" + uname + "' " +
                     "and b.winner is null order by c.productID;";
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);

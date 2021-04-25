@@ -32,7 +32,7 @@
 
         int productID = Integer.parseInt(request.getParameter("productID"));
 
-        String insert = "insert into product_alert(username, productID) "
+        String insert = "insert into product_alerts(username, productID) "
                 + "values (?, ?)";
 
         try {
@@ -60,7 +60,7 @@
     <tbody>
     <%
             String data = "select c.title, b.open_date, b.close_date from clothing c, bid_selling_offers b, product_alerts p where " +
-            "c.productID = b.productID and b.productID = p.productID and a.username='" + uname + "' order by c.productID;";
+            "c.productID = b.productID and b.productID = p.productID and p.username='" + uname + "' order by c.productID;";
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);
             while (res.next()) {
