@@ -5,14 +5,21 @@
 <html>
 <head>
     <title>Posted Answer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<a href="loginBox.jsp">Login Page</a>
-  |  <a href="createAccountPage.jsp">Create an Account</a>
-  |  <a href="logout.jsp">Logout</a>
-  |  <a href="profile.jsp">Profile</a>
-  |  <a href="qaPage.jsp">Questions and Answers</a>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<br><br>
 <%
     ApplicationDB db = new ApplicationDB();
     Connection con = db.getConnection();
