@@ -7,16 +7,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Create New Bid |BuyMe</title>
 </head>
 <body>
 <a href="logout.jsp">Logout</a>|  
 <a href="profile.jsp">Profile</a> 
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a>
-<a href="createAuctionPage.jsp">Create Auction</a> 
-<a href="bids.jsp">Your Bids</a> 
-<a href="createManualBidPage.jsp">Create Bid</a> 
 
 	<%
 	try {
@@ -75,6 +72,7 @@
 				}
 				
 				
+
 			String cond = "SELECT * FROM bid_selling_offers WHERE bid_id = ?";
 			PreparedStatement ps2 = con.prepareStatement(cond);
 			ps2.setString(1, newID);
@@ -153,11 +151,30 @@
 									}
 									
 									ps3.executeUpdate();
+									
+									//insert to alerts
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									while(result.next())
+									{
+										String username = result.getString("username");
+										int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+										PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+										ps5.setString(1, username);
+										ps5.setInt(2, bid_id_bidder);
+										ps5.executeUpdate();
+										
+									}
+									
+									
+									
+						
 
 								}
 								else if(currentValue<requested_bid_price && requested_bid_price<upperLimit)
 								{
-									out.print("Sorry, you have been outbid!");
+									out.print("Sorry, you have been outbid!"); //alert
 									float newPrice = requested_bid_price+(float)0.5;
 									
 									
@@ -179,6 +196,24 @@
 									ps3.setFloat(3, requested_bid_price);
 									ps3.setFloat(4, requested_bid_price);
 									ps3.executeUpdate();
+									
+									//insert alerts
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									while(result.next())
+									{
+										String username = result.getString("username");
+										int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+										PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+										ps5.setString(1, username);
+										ps5.setInt(2, bid_id_bidder);
+										ps5.executeUpdate();
+										
+									}
+									
+									
+									
 								}
 								else if(requested_bid_price==upperLimit)
 								{
@@ -193,6 +228,22 @@
 									ps3.setFloat(3, newPrice);
 									ps3.setFloat(4, newPrice);
 									ps3.executeUpdate();
+									
+									
+									//insert alerts
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									while(result.next())
+									{
+										String username = result.getString("username");
+										int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+										PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+										ps5.setString(1, username);
+										ps5.setInt(2, bid_id_bidder);
+										ps5.executeUpdate();
+										
+									}
 
 								}				
 								condition = 2;
@@ -232,6 +283,22 @@
 										ps.setString(4, uname);
 										ps.executeUpdate();
 										
+										
+										//insert alerts
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										while(result.next())
+										{
+											String username = result.getString("username");
+											int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+											PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+											ps5.setString(1, username);
+											ps5.setInt(2, bid_id_bidder);
+											ps5.executeUpdate();
+											
+										}
+										
 									}
 								}
 								else if(currentValue<requested_bid_price && requested_bid_price<upperLimit)
@@ -263,6 +330,22 @@
 										ps.setInt(2, bid_id);
 										ps.setString(3, uname);
 										ps.executeUpdate();
+										
+										
+										//insert alerts
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										while(result.next())
+										{
+											String username = result.getString("username");
+											int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+											PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+											ps5.setString(1, username);
+											ps5.setInt(2, bid_id_bidder);
+											ps5.executeUpdate();
+										
+										}
 									}
 								}
 								else if(requested_bid_price==upperLimit)
@@ -283,6 +366,22 @@
 										ps.setInt(2, bid_id);
 										ps.setString(3, uname);
 										ps.executeUpdate();
+										
+										
+										//insert alerts
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
+										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										while(result.next())
+										{
+											String username = result.getString("username");
+											int bid_id_bidder = Integer.parseInt(result.getString("bid_id"));
+											PreparedStatement ps5 = con.prepareStatement(insertAlerts);
+											ps5.setString(1, username);
+											ps5.setInt(2, bid_id_bidder);
+											ps5.executeUpdate();
+											
+										}
 									}
 								}
 								
