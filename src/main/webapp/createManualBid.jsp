@@ -35,14 +35,18 @@
 			
 			
 			
+			
 			Statement stmt2 = con.createStatement();
-				int bid_id = Integer.parseInt(request.getParameter("bid_id"));
-				float requested_bid_price = Float.parseFloat(request.getParameter("bidPrice"));
-			
-			
+			int bid_id = Integer.parseInt(request.getParameter("bidID"));
+			float requested_bid_price = Float.parseFloat(request.getParameter("bidPrice"));
+	
+
 			//grabs current maxValue
-				String getMax = "SELECT max(bid_val) as max from manual_bid where bid_id=?" + request.getParameter("bidID");
+				//String getMax = "SELECT max(bid_val) as max from manual_bid where bid_id=?" +bid_id;
+				String getMax = "SELECT max(bid_val) as max from manual_bid where bid_id="+bid_id;
+			
 				ResultSet currBid = stmt2.executeQuery(getMax);
+			
 				float currentValue = 0;
 				if (currBid.next()) 
 				{
@@ -52,8 +56,7 @@
 				
 				
 				//grabs current upperLimit
-				
-				String getUpperLimit = "SELECT max(upper_limit) as max from manual_bid where bid_id=?" + request.getParameter("bidID");
+				String getUpperLimit = "SELECT max(upper_limit) as max from manual_bid where bid_id=" + bid_id;
 				currBid = stmt2.executeQuery(getUpperLimit);
 				float upperLimit = 0;
 				if (currBid.next()) 
@@ -61,8 +64,9 @@
 					upperLimit = currBid.getFloat("max");  
 				}
 				
+				
 				//grab the username with the higher bid ----
-				String getHighestBidUsername = "SELECT username, max(upper_limit) as max from manual_bid where bid_id=?" + request.getParameter("bidID");
+				String getHighestBidUsername = "SELECT username, max(upper_limit) as max from manual_bid where bid_id=" + bid_id;
 				currBid = stmt2.executeQuery(getHighestBidUsername);
 				String highestBidder="";
 				if (currBid.next()) 
@@ -71,13 +75,6 @@
 				}
 				
 				
-				
-			
-			
-			
-			
-	
-			//
 			String cond = "SELECT * FROM bid_selling_offers WHERE bid_id = ?";
 			PreparedStatement ps2 = con.prepareStatement(cond);
 			ps2.setString(1, newID);
