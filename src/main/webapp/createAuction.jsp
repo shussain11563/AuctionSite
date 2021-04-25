@@ -16,7 +16,7 @@
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a> 
 
-dsfgd
+ 
 
 <%
 	try {

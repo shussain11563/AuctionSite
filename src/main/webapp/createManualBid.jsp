@@ -19,7 +19,7 @@
 <a href="createManualBidPage.jsp">Create Bid</a> 
 
 
-
+ 
 
 
 	<%

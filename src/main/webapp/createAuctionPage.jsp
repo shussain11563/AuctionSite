@@ -12,7 +12,7 @@
 <a href="logout.jsp">Logout</a>|  
 <a href="profile.jsp">Profile</a> 
 <a href="createAuctionPage.jsp">Create Auction</a> 
-
+ 
 
 	<h1>Create an Auction</h1>  
 <br>

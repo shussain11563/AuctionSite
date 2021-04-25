@@ -15,7 +15,7 @@
 <a href="createManualBidPage.jsp">Create Bid</a> 
 
  
-
+ 
 
 
 	<h1>Create a Manual Bid</h1>  
