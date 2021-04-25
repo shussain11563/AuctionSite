@@ -81,11 +81,10 @@
 					String n = rs2.getString("username");
 				    int nm = rs2.getInt("bid_id");
 				    float s = rs2.getFloat("bid_val");
-					String temp2 = "UPDATE bid_Selling_offers SET highest_bid = ?, winner = ?, status = ? where bid_id = ?";
+					String temp2 = "UPDATE bid_Selling_offers SET highest_bid = ?, winner = ? where bid_id = ?";
 					PreparedStatement ps3 = con.prepareStatement(temp2);
 					ps3.setFloat(1, s);
 					ps3.setString(2, n);
-					ps3.setInt(3, 1);
 					ps3.setString(4, bidID);
 					
 

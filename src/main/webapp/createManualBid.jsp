@@ -61,6 +61,7 @@
 		
 		while (rs2.next()){
 			int open = rs2.getInt("status");
+			String winner = rs2.getString("winner");
 			String seller = rs2.getString("username");
 			java.sql.Date close_date = rs2.getDate("close_date");
 			Time close_time = rs2.getTime("close_time");
@@ -70,7 +71,7 @@
 					break;
 				}
 				else{
-					if(open == 0){
+					if(winner == null){
 						if (rs1.next() == false){
 							String insertAuction = "INSERT INTO manual_bid(username, bid_id, bid_val)" + "VALUES (?, ?, ?)";
 							PreparedStatement ps = con.prepareStatement(insertAuction);
