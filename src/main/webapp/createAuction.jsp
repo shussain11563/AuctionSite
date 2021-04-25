@@ -34,6 +34,7 @@
 		String minPrice = request.getParameter("min_price");
 		String brandName = request.getParameter("brand");
 		String type = request.getParameter("type");
+		String size = request.getParameter("size");
 		
 		Date open_date = java.sql.Date.valueOf(openDate);
 		java.sql.Date close_date = java.sql.Date.valueOf(closeDate);
@@ -62,8 +63,8 @@
 
 		String insertAuction = "INSERT INTO bid_selling_offers(title, productID, username, open_date, close_date, close_time, min_price, highest_bid, winner, description)"
 				+ "VALUES (?, LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?)";
-		String insertProduct = "INSERT INTO clothing(title, brand, type)"
-				+ "VALUES (?, ?, ?)";
+		String insertProduct = "INSERT INTO clothing(title, brand, type, size)"
+				+ "VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(insertAuction);
 		PreparedStatement ps1 = con.prepareStatement(insertProduct);
@@ -73,6 +74,7 @@
 		ps1.setString(1, newTitle);
 		ps1.setString(2, brandName);
 		ps1.setString(3, type);
+		ps1.setString(4, size);
 		
 		
 		
