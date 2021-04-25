@@ -154,7 +154,7 @@
 									
 									//insert to alerts
 									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-									String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 									while(result.next())
 									{
@@ -199,7 +199,7 @@
 									
 									//insert alerts
 									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-									String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 									while(result.next())
 									{
@@ -232,7 +232,7 @@
 									
 									//insert alerts
 									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-									String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 									while(result.next())
 									{
@@ -286,7 +286,7 @@
 										
 										//insert alerts
 										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-										String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 										while(result.next())
 										{
@@ -334,7 +334,7 @@
 										
 										//insert alerts
 										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-										String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 										while(result.next())
 										{
@@ -370,7 +370,7 @@
 										
 										//insert alerts
 										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
-										String insertAlerts = "INSERT INTO alerts (username, bid_id) VALUES (?, ?)";
+										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
 										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
 										while(result.next())
 										{
