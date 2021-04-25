@@ -43,7 +43,7 @@
         Connection conn = db.getConnection();
         String data = "select b.bid_id, c.title, b.open_date, b.close_date from bid_selling_offers b, clothing c where b.username='" +
                 username + "' and (b.productID = c.productID) order by bid_id;";
-        try {
+        // try {
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);
             while (res.next()) {
@@ -74,15 +74,15 @@
     <tbody>
     <%
             Statement stat2 = conn.createStatement();
-            String data2 = "select m.bid_id as bid_id, c.title, b.open_date, b.close_date from manual_bid m, clothing c, bid_selling_offers b " +
-                    "where m.username='" + username + "' and b.productID = c.productID union select a.bid_number as " +
-                    "bid_id, c.title, b.open_date, b.close_date from auto_bid a, clothing c where b.productID = c.productID and a.username='"
-                    + username + "' order by bid_id;";
+            String data2 = "select m.bid_id as bidID, c.title, b.open_date, b.close_date from manual_bid m, clothing c, bid_selling_offers b " +
+                    "where m.username='" + username + "' and b.bid_id = m.bid_id and c.productID = b.productID union select a.bid_number as " +
+                    "bidID, c.title, b.open_date, b.close_date from auto_bid a, clothing c, bid_selling_offers b where a.username='"
+                    + username + "' and b.bid_id = a.bid_number and c.productID = b.productID;";
             ResultSet res2 = stat2.executeQuery(data2);
             while (res2.next()) {
     %>
     <tr>
-        <td><%=res2.getInt("bid_id")%>
+        <td><%=res2.getInt("bidID")%>
         </td>
         <td><%=res2.getString("title")%>
         </td>
@@ -93,10 +93,10 @@
     <%
             }
             conn.close();
-        } catch (SQLException throwable) {
+        /* } catch (SQLException throwable) {
             throwable.printStackTrace();
             out.print("Unable to show user history :(");
-        }
+        } */
     %>
     </tbody>
 </table>
