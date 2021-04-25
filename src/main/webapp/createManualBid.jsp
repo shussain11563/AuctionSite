@@ -60,7 +60,6 @@
 
 		
 		while (rs2.next()){
-			int open = rs2.getInt("status");
 			String winner = rs2.getString("winner");
 			String seller = rs2.getString("username");
 			java.sql.Date close_date = rs2.getDate("close_date");
