@@ -9,17 +9,16 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a href="loginBox.jsp">Login Page</a>
-    |  <a href="createAccountPage.jsp">Create an Account</a>
-    |  <a href="logout.jsp">Logout</a>
-    |  <a href="profile.jsp">Profile</a>
-    |  <a href="qaPage.jsp">Questions and Answers</a>
-    |  <a href="searchPage.jsp">Search</a>
-    |  <a href="checkAlerts.jsp">Check alerts </a>
-</nav>
-<br>
 <%
     session=request.getSession(false);
     String uname = (String) session.getAttribute("user");

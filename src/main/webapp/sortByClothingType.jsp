@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="java.sql.*"%>
 <html>
 <head>
     <title>Search</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<p></p>
 <div class="row">
     <div class="col-md-4">
         <form action="" method="get">
-            <input type="text" class="form-control" name="q" placeholder="Search">
+            <label>
+                <input type="text" class="form-control" name="q" placeholder="Search">
+            </label>
         </form>
     </div>
 </div>
@@ -35,7 +45,7 @@
 </div>
 <p></p>
 <table class="table table-bordered table-striped table-hover">
-    <thread>
+    <thead>
         <tr>
             <th>Bid ID</th>
             <th>Seller (User)</th>
@@ -47,16 +57,17 @@
             <th>Highest Bid</th>
             <th>Set Alert</th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
         <%
         ApplicationDB db = new ApplicationDB();
         Connection conn = db.getConnection();
         String data = "select b.bid_id, b.username, c.title, c.brand, c.type, b.open_date, b.close_date, b.highest_bid from " +
-         "bid_selling_offers b, clothing c where b.productID = c.productID group by c.type order by b.bid_id asc";
-        Statement stat = conn.createStatement();
-        ResultSet res = stat.executeQuery(data);
-        while (res.next()) {
+         "bid_selling_offers b, clothing c where b.productID = c.productID group by c.type order by b.bid_id ";
+        try{
+            Statement stat = conn.createStatement();
+            ResultSet res = stat.executeQuery(data);
+            while (res.next()) {
         %>
     <tr>
         <% int bidID = res.getInt("bid_id");
@@ -74,8 +85,12 @@
         <td>&#9745</td>
     </tr>
         <%
+            }
+            conn.close();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            out.print("Unable to sort by clothing type :(");
         }
-        conn.close();
         %>
 </table>
 </tbody>

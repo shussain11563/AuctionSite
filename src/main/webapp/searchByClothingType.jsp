@@ -4,15 +4,25 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <html>
 <head>
-  <title>Search</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function() {
+        $("#navigation").load("navigation.html");
+    });
+</script>
 <body>
-<p></p>
+<br>
 <table class="table table-bordered table-striped table-hover">
-    <thread>
+    <thead>
         <tr>
             <th>Bid History</th>
             <th>Seller History</th>
@@ -24,7 +34,7 @@
             <th>Highest Bid</th>
             <th>Set Alert</th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
     <%
         String[] sizes = request.getParameterValues("size");
