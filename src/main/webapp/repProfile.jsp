@@ -58,15 +58,9 @@
                 out.print("Deleted account " + request.getParameter("username") + " successfully!");
                 break;
             case 2:
-                if (request.getParameter("bid type").equals("manual")) {
-                    str = "DELETE FROM manual_bid WHERE username = '" +
-                            request.getParameter("username") + "' AND bid_id = '" +
-                            request.getParameter("bidID") + "';";
-                } else {
-                    str = "DELETE FROM auto_bid WHERE username = '" +
-                            request.getParameter("username") + "' AND bid_number = '" +
-                            request.getParameter("bidID") + "';";
-                }
+                str = "DELETE FROM manual_bid WHERE username = '" +
+                        request.getParameter("username") + "' AND bid_id = '" +
+                        request.getParameter("bidID") + "';";
                 stmt.executeUpdate(str);
                 out.print("Deleted bid successfully!");
                 break;

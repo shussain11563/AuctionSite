@@ -96,15 +96,6 @@
 <form method="post" action="repProfile.jsp">
     <table>
         <tr>
-            <td><label for="bid type">Choose Bid Type: </label></td>
-            <td>
-                <select name="bid type" id="bid type">
-                    <option value="manual">Manual</option>
-                    <option value="auto">Automatic</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
             <td><label for="username1">Enter User: </label></td>
             <td><input id="username1" type="text" name="username" required></td>
         </tr>
