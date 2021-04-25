@@ -23,7 +23,7 @@
 		
 		session=request.getSession(false); 
 		String uname = (String) session.getAttribute("user");
-		if(uname!=null && request.getParameter("bidPrice"))
+		if(uname!=null && request.getParameter("bidPrice")!=null)
 		{
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();
@@ -34,11 +34,10 @@
 			String bid_val = request.getParameter("bidPrice");
 			
 			
-			/*
 			
 			Statement stmt2 = con.createStatement();
 				int bid_id = Integer.parseInt(request.getParameter("bid_id"));
-				float requested_bid_price = Float.parseFloat(request.getParameter("new_bid"));
+				float requested_bid_price = Float.parseFloat(request.getParameter("bidPrice"));
 			
 			
 			//grabs current maxValue
@@ -63,7 +62,7 @@
 				}
 				
 				//grab the username with the higher bid ----
-				String getUpperLimit = "SELECT username, max(upper_limit) as max from manual_bid where bid_id=?" + request.getParameter("bidID");
+				String getHighestBidUsername = "SELECT username, max(upper_limit) as max from manual_bid where bid_id=?" + request.getParameter("bidID");
 				currBid = stmt2.executeQuery(getHighestBidUsername);
 				String highestBidder="";
 				if (currBid.next()) 
@@ -74,7 +73,7 @@
 				
 				
 			
-			*/
+			
 			
 			
 	
@@ -108,18 +107,15 @@
 			
 			while (rs2.next()) //checks if auction exists
 			{
-				/*
+				
 				//asks user to enter a value greater than the current value
 				if(currentValue>requested_bid_price)
 				{
 					float validPrice = currentValue+(float)0.5;
-					out.print(Please enter more than $"  + validPrice);
+					out.print("Please enter more than $"  + validPrice);
 					condition=-1;
 					break;
 				}
-				
-				
-					*/
 				String winner = rs2.getString("winner");
 				String seller = rs2.getString("username");
 				java.sql.Date close_date = rs2.getDate("close_date");
@@ -139,7 +135,7 @@
 							//new bid from user (insert)
 							if (rs1.next() == false)
 							{
-								/*
+								
 								if(currentValue<requested_bid_price && requested_bid_price>upperLimit)
 								{
 									out.print("You are now the highest bid!"); //alert
@@ -206,7 +202,7 @@
 							}
 							else //old bid from user (update)
 							{
-								/*
+								
 								if(currentValue<requested_bid_price && requested_bid_price>upperLimit)
 								{
 									if(uname.equals(highestBidder))
@@ -235,7 +231,7 @@
 											ps.setFloat(2, newPrice);
 										}
 
-										ps.setInt(3, newID);
+										ps.setInt(3, bid_id);
 										ps.setString(4, uname);
 										ps.executeUpdate();
 										
@@ -264,8 +260,8 @@
 										ps.executeUpdate();
 										
 										//sets the price for the current user
-										String update =  "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
-										PreparedStatement ps = con.prepareStatement(update);
+										update =  "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
+										ps = con.prepareStatement(update);
 										ps.setFloat(1, requested_bid_price);
 										ps.setInt(2, bid_id);
 										ps.setString(3, uname);
@@ -293,7 +289,7 @@
 									}
 								}
 								
-									*/
+									
 
 							}
 						}	

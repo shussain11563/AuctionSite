@@ -33,22 +33,6 @@
 		</form>
 	<br>
 	
-	
-		<h1>Create an Automatic Bid</h1>  
-<br>
-		<form method="post" action="createManualBid.jsp" id="createManualBid">
-		<table>
-		<tr>    
-		<td>Bid Number</td><td><input type="number" name="bidID"></td>
-		</tr>
-		<tr>
-		<td>Bid Price</td><td><input type="number" name="bidPriceAuto" min="0.00" step=any></td>
-		</tr>
-		</table>
-		<input type="submit" value="Submit Bid">
-		</form>
-	<br>
-
 
 
 </body>
