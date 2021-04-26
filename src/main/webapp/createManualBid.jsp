@@ -177,9 +177,7 @@
 										
 									}
 									
-									
-									
-						
+									condition=2;
 
 								}
 								else if(currentValue<requested_bid_price && requested_bid_price<upperLimit)
@@ -317,6 +315,7 @@
 									{
 										String output = "Please enter more than $"  + upperLimit + "!&nbsp";
 										out.print(output);
+										condition=-1;
 		
 									}
 									else
@@ -332,6 +331,7 @@
 										ps.setInt(2, bid_id);
 										ps.setString(3, highestBidder);
 										ps.executeUpdate();
+										
 										
 										//sets the price for the current user
 										update =  "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
@@ -356,6 +356,7 @@
 											ps5.executeUpdate();
 										
 										}
+										condition=1;
 									}
 								}
 								else if(requested_bid_price==upperLimit)
@@ -392,6 +393,7 @@
 											ps5.executeUpdate();
 											
 										}
+										condition=1;
 									}
 								}
 								
