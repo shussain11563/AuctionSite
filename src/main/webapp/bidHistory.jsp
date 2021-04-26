@@ -24,7 +24,6 @@
 <div class="jumbotron jumbotron-fluid">
     <h1 class="display-4">Bid History for Bid${bidID}</h1>
 </div>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="history.back()">Back to Search</button>
 <br>
 <table class="table table-bordered table-striped table-hover">
     <thead>
