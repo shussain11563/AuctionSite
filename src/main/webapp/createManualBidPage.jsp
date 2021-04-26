@@ -1,20 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*, java.util.*, javax.servlet.*"%>    
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Create Auction</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		  crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<div id="navigation">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(function() {
+		$("#navigation").load("navigation.html");
+	});
+</script>
 <body>
-
-<a href="logout.jsp">Logout</a>|  
-<a href="profile.jsp">Profile</a> 
-<a href="createAuctionPage.jsp">Create Auction</a>
-<a href="createManualBidPage.jsp">Create Bid</a> 
-
- 
  <%
     if (session.getAttribute("user") == null) {
         out.print("Please log in to create a bid.");
