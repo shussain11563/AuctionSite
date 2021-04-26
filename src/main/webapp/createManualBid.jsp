@@ -162,10 +162,14 @@
 									
 									ps3.executeUpdate();
 									
-									//insert to alerts
-									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									//insert alerts
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+									PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+									ps6.setInt(1,bid_id);
+									ps6.setInt(2,bid_id);
+									
 									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									ResultSet result = ps6.executeQuery();
 									while(result.next())
 									{
 										String username = result.getString("username");
@@ -206,9 +210,13 @@
 									ps3.executeUpdate();
 									
 									//insert alerts
-									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+									PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+									ps6.setInt(1,bid_id);
+									ps6.setInt(2,bid_id);
+									
 									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									ResultSet result = ps6.executeQuery();
 									while(result.next())
 									{
 										String username = result.getString("username");
@@ -239,9 +247,13 @@
 									
 									
 									//insert alerts
-									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+									String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+									PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+									ps6.setInt(1,bid_id);
+									ps6.setInt(2,bid_id);
+									
 									String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-									ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+									ResultSet result = ps6.executeQuery();
 									while(result.next())
 									{
 										String username = result.getString("username");
@@ -293,9 +305,13 @@
 										
 										
 										//insert alerts
-										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+										PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+										ps6.setInt(1,bid_id);
+										ps6.setInt(2,bid_id);
+										
 										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										ResultSet result = ps6.executeQuery();
 										while(result.next())
 										{
 											String username = result.getString("username");
@@ -343,9 +359,13 @@
 										
 										
 										//insert alerts
-										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+										PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+										ps6.setInt(1,bid_id);
+										ps6.setInt(2,bid_id);
+										
 										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										ResultSet result = ps6.executeQuery();
 										while(result.next())
 										{
 											String username = result.getString("username");
@@ -354,7 +374,7 @@
 											ps5.setString(1, username);
 											ps5.setInt(2, bid_id_bidder);
 											ps5.executeUpdate();
-										
+											
 										}
 										condition=1;
 									}
@@ -380,9 +400,13 @@
 										
 										
 										//insert alerts
-										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=1 AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=1)";
+										String grabUsernameForAlert = "SELECT username, bid_id FROM manual_bid WHERE bid_id=? AND bid_val<> (SELECT max(bid_val) AS max FROM manual_bid WHERE bid_id=?)";
+										PreparedStatement ps6 = con.prepareStatement(grabUsernameForAlert);
+										ps6.setInt(1,bid_id);
+										ps6.setInt(2,bid_id);
+										
 										String insertAlerts = "INSERT IGNORE INTO alerts (username, bid_id) VALUES (?, ?)";
-										ResultSet result = stmt2.executeQuery(grabUsernameForAlert);
+										ResultSet result = ps6.executeQuery();
 										while(result.next())
 										{
 											String username = result.getString("username");
