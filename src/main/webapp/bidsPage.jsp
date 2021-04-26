@@ -40,6 +40,7 @@
 
             Time closeTime = rs.getTime("close_time");
             float reserve = rs.getFloat("min_price");
+            
 
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
             Date tempCurrentTime = new Date(System.currentTimeMillis());
@@ -116,6 +117,9 @@
                     out.print("To be announced.");
                 }
             }
+        }
+        else{
+        	out.print("You don't have a bid in this auction.");
         }
 
     } catch (SQLException ex) {
