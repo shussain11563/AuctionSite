@@ -77,9 +77,7 @@
             Size
         </div>
         <div class="col-6" style="border: 1px solid #e5e5e5;">
-            <% if (type.equals("top")) { %><%=res.getString("top_size")%> <%}%>
-            <% if (type.equals("bottom")) { %><%=res.getString("bottom_size")%> <%}%>
-            <% if (type.equals("accessory")) { %><%=res.getString("accessory_size")%> <%}%>
+            <%=res.getString("size")%>
         </div>
     </div>
     <div class="row" style="border: 1px solid #e5e5e5;">
