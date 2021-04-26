@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.*"%>
 <html>
 <head>
     <title>Product Details</title>
@@ -25,22 +23,23 @@
     Product Details
 </nav>
 <br>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="history.back()">Back to Search</button>
 <%
     int productID = Integer.parseInt(request.getParameter("productID"));
     ApplicationDB db = new ApplicationDB();
     Connection conn = db.getConnection();
-    String data = "select * from clothing c, bid_selling_offers b where c.productID=" + productID + "" +
+    String data = "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, highest_bid " +
+            "from clothing c, bid_selling_offers b where c.productID=" + productID +
             " and c.productID = b.productID;";
-    Statement stat = conn.createStatement();
-    ResultSet res = stat.executeQuery(data);
-    String title = "";
-    String brand = "";
-    String type = "";
-    String openDate = "";
-    while (res.next()) {
-        openDate = res.getString("open_date");
-        request.setAttribute("open_date", openDate);
+    try {
+        Statement stat = conn.createStatement();
+        ResultSet res = stat.executeQuery(data);
+        String title = "";
+        String brand = "";
+        String type = "";
+        String openDate = "";
+        while (res.next()) {
+            openDate = res.getString("open_date");
+            request.setAttribute("open_date", openDate);
 %>
 <div class="container">
     <div class="row" style="border: 1px solid #e5e5e5;">
@@ -100,7 +99,7 @@
     Similar Items
 </nav>
 <table class="table table-bordered table-striped table-hover">
-    <thread>
+    <thead>
         <tr>
             <th>Bid History</th>
             <th>Seller History</th>
@@ -110,21 +109,32 @@
             <th>Open Date</th>
             <th>Close Date</th>
             <th>Highest Bid</th>
+            <%
+                session = request.getSession(false);
+                String uname = (String) session.getAttribute("user");
+                if(uname != null) {
+            %>
             <th>Set Alert</th>
+            <%
+                }
+            %>
         </tr>
-    </thread>
+    </thead>
     <tbody>
         <%
-        String similar = "select * from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date " +
-        ">= " + openDate + " and c.title like '%" + title + "%' union " +
-        "select * from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date " +
-        ">= " + openDate + " and c.brand='" + brand + "' union " +
-        "select * from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date " +
-        ">= " + openDate + " and c.type='" + type + "'";
+            String similar = "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, highest_bid " +
+                    "from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date >='" +
+                    openDate + "' and c.title like '%" + title + "%' union " +
+                    "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, highest_bid " +
+                    "from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date >='" +
+                    openDate + "' and c.brand='" + brand + "' union " +
+                    "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, highest_bid " +
+                    "from bid_selling_offers b, clothing c where b.productID = c.productID and b.open_date >='" +
+                    openDate + "' and c.type='" + type + "'";
 
-        Statement stat2 = conn.createStatement();
-        ResultSet res2 = stat2.executeQuery(similar);
-        while (res2.next()) {
+            Statement stat2 = conn.createStatement();
+            ResultSet res2 = stat2.executeQuery(similar);
+            while (res2.next()) {
         %>
     <tr>
         <% int bidID = res2.getInt("bid_id");
@@ -135,21 +145,30 @@
         <td><a href="userHistory.jsp?username=${username}">${username}</a></td>
         <% int similarProductID = res2.getInt("productID");
             request.setAttribute("productID", similarProductID);%>
-        <td><a href="productDetails.jsp?productID=${similarProductID}"><%=res2.getString("title")%></a></td>
+        <td><a href="productDetails.jsp?productID=${productID}"><%=res2.getString("title")%></a></td>
         <td><%=res2.getString("type")%></td>
         <td><%=res2.getString("brand")%></td>
         <td><%=res2.getDate("open_date")%></td>
         <td><%=res2.getDate("close_date")%></td>
         <td><%=res2.getFloat("highest_bid")%></td>
-        <td><a href="setAlert.jsp?username=${uname}&productID=${similarProductID}">&#9745</a></td>
+        <%
+            if(uname != null) {
+        %>
+        <td><a href="setAlert.jsp?username=<%=uname%>&productID=${productID}">&#9745</a></td>
+        <%
+            }
+        %>
     </tr>
         <%
+            }
+            conn.close();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            out.print("Unable to view products :(");
         }
-        conn.close();
         %>
+    </tbody>
 </table>
-</tbody>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

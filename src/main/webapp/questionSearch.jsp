@@ -10,24 +10,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        table {
-            border: 1px solid;
-        }
-        td {
-            border: 1px solid;
-        }
-        div {
-            word-wrap: break-word;
-            hyphens: manual;
-        }
-        div.q {
-            width: 200px;
-        }
-        div.a {
-            width: 400px;
-        }
-    </style>
 </head>
 <div id="navigation">
 
@@ -53,18 +35,20 @@
         str.append(";");
         ResultSet result = con.createStatement().executeQuery(str.toString());
 %>
-<table>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
     <tr>
-        <td><b>Questions</b></td>
-        <td><b>Answers</b></td>
+        <th>Questions</th>
+        <th>Answers</th>
     </tr>
+    </thead>
 <%
         while (result.next()) {
             String ans = result.getString("answer") == null ? "" : result.getString("answer");
 %>
     <tr>
-        <td><div class="q"><%=result.getString("description")%></div></td>
-        <td><div class="a"><%=ans%></div></td>
+        <td><%=result.getString("description")%></td>
+        <td><%=ans%></td>
     </tr>
 <%
         }

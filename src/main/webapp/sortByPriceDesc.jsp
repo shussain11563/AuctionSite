@@ -98,7 +98,7 @@
         String[] types = request.getParameterValues("clothing type");
         if (types == null || types.length == 3) {
             data = "select b.bid_id, b.productID, b.username, c.title, c.brand, c.type, b.open_date, b.close_date, b.highest_bid from " +
-                "bid_selling_offers b, clothing c where b.productID = c.productID order by b.highest_bid;";
+                "bid_selling_offers b, clothing c where b.productID = c.productID order by b.highest_bid desc;";
         } else {
             for (int i = 0; i < types.length - 1; i++) {
                 data += "select b.bid_id, b.productID, b.username, c.title, c.brand, c.type, b.open_date, b.close_date, b.highest_bid from " +
@@ -107,7 +107,7 @@
             }
             data += "select b.bid_id, b.productID, b.username, c.title, c.brand, c.type, b.open_date, b.close_date, b.highest_bid from " +
                 "bid_selling_offers b, clothing c where b.productID = c.productID and c.type='" +
-                types[types.length - 1] + "' order by b.highest bid;";
+                types[types.length - 1] + "' order by b.highest bid desc;";
         }
 
         try{

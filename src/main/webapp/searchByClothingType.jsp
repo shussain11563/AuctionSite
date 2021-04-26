@@ -104,7 +104,8 @@
         Connection conn = db.getConnection();
         String data = "";
         if (types == null || types.length == 3) {
-            data = "select * from bid_selling_offers b, clothing c where b.productID = c.productID;";
+            data = "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, highest_bid " +
+             "from bid_selling_offers b, clothing c where b.productID = c.productID;";
         } else {
             request.setAttribute("clothing type", request.getAttribute("clothing type"));
             for (int i = 0; i < types.length - 1; i++) {

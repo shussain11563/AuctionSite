@@ -24,7 +24,6 @@
 <div class="jumbotron jumbotron-fluid">
     <h1 class="display-4">User History for ${username}</h1>
 </div>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="history.back()">Back to Search</button>
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     History of Sells
 </nav>

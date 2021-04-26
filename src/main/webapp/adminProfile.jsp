@@ -34,7 +34,7 @@
             case 0:
                 str = "SELECT SUM(highest_bid) FROM bid_selling_offers WHERE winner IS NOT NULL;";
                 result = stmt.executeQuery(str);
-                if (result.next()) out.print("The total earnings are: $" + result.getString("SUM(highest_bid)"));
+                if (result.next()) out.print("<h1>Total Earnings</h1>The total earnings are: $" + result.getString("SUM(highest_bid)"));
                 break;
             case 1:
                 int reportType = Integer.parseInt(request.getParameter("report type"));
@@ -61,10 +61,22 @@
                     default:
                 }
                 result = stmt.executeQuery(str);
+                switch (reportType) {
+                    case 0:
+                        out.print("<h1>Earnings Per Item</h1>");
+                        break;
+                    case 1:
+                        out.print("<h1>Earnings Per Item Type</h1>");
+                        break;
+                    case 2:
+                        out.print("<h1>Earnings Per End User</h1>");
+                    default:
+                }
 %>
-<table>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
     <tr>
-        <td>
+        <th>
         <%
                 switch (reportType) {
                     case 0:
@@ -78,9 +90,10 @@
                     default:
                 }
         %>
-        </td>
-        <td>Earnings</td>
+        </th>
+        <th>Earnings</th>
     </tr>
+    </thead>
     <%
                 while (result.next()) {
     %>
@@ -117,22 +130,24 @@
                 }
                 result = stmt.executeQuery(str);
 %>
-<table>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
     <tr>
         <%
                 if (formID == 2) {
                     %>
-        <td>Items</td>
-        <td>Number Sold</td>
+        <th>Items</th>
+        <th>Number Sold</th>
                     <%;
                 } else {
                     %>
-        <td>Buyers</td>
-        <td>Number Bought</td>
+        <th>Buyers</th>
+        <th>Number Bought</th>
                     <%;
                 }
         %>
     </tr>
+    </thead>
     <%
                 while (result.next()) {
     %>

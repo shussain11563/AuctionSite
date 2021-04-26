@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
     <title>Product Alerts</title>
@@ -45,12 +46,22 @@
     <tbody>
     <%
         try {
-            String data = "select * from clothing c, bid_selling_offers b, product_alerts p where " +
+            String data = "select b.bid_id, b.username, c.title, c.productID, c.brand, c.type, open_date, close_date, close_time, highest_bid " +
+                    "from clothing c, bid_selling_offers b, product_alerts p where " +
                     "c.productID = b.productID and b.productID = p.productID and p.username='" + uname + "' " +
                     "and b.winner is null order by c.productID;";
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(data);
             while (res.next()) {
+                if ((new java.sql.Date(System.currentTimeMillis())).compareTo(res.getDate("close_date")) >= 0) {
+                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                    Date tempCurrentTime = new Date(System.currentTimeMillis());
+                    String currentTimeStr = formatter.format(tempCurrentTime);
+                    java.sql.Time currentTime = java.sql.Time.valueOf(currentTimeStr);
+                    if (!(currentTime.toLocalTime().isBefore(res.getTime("close_time").toLocalTime()))) {
+                        continue;
+                    }
+                }
     %>
     <tr>
         <td><%=res.getString("title")%></td>
