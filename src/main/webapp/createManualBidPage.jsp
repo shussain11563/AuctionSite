@@ -15,7 +15,11 @@
 <a href="createManualBidPage.jsp">Create Bid</a> 
 
  
- 
+ <%
+    if (session.getAttribute("user") == null) {
+        out.print("Please log in to create a bid.");
+    } else {
+%>
 
 
 	<h1>Create a Manual Bid</h1>  
@@ -32,7 +36,8 @@
 		<input type="submit" value="Submit Bid">
 		</form>
 	<br>
-	
+	<%} 
+	%>
 
 
 </body>

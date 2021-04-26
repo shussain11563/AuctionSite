@@ -20,6 +20,13 @@
 </script>
 <body>
 <h1>Your Bids</h1>
+
+<%
+    if (session.getAttribute("user") == null) {
+        out.print("Please log in to see your bids.");
+    } else {
+%>
+
 <%		
 
 ApplicationDB db = new ApplicationDB();	
@@ -62,7 +69,7 @@ con.close();
 		<input type="submit" value="Check Status">
 		</form>
 	<br>
-	
+	<%} %>
 
 </body>
 </html>
