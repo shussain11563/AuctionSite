@@ -276,7 +276,7 @@
 									else
 									{
 										out.print("You are now the highest bid!&nbsp"); //alert
-										String update =  "UPDATE manual_bid SET bid_val = ? upper_limit=? where bid_id = ? and username = ?";
+										String update =  "UPDATE manual_bid SET bid_val = ?, upper_limit=? where bid_id = ? and username = ?";
 										float newPrice = upperLimit + (float)0.50;
 										PreparedStatement ps = con.prepareStatement(update);
 										ps.setFloat(1, newPrice);
