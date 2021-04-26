@@ -76,9 +76,8 @@
 		ResultSet result = ps.executeQuery();
 		
 		while (result.next()) 
-		{ 
-			String bidID = " " + (result.getInt("bid_id"));
-			String getTitle = "select title from bid_selling where bid_id=" + bidID;
+		{
+			String getTitle = "select title from bid_selling_offers where bid_id=" + result.getInt("bid_id");
 			ResultSet grabTitle = stmt.executeQuery(getTitle);
 			String title = "";
 			if(grabTitle.next())
