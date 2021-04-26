@@ -108,7 +108,7 @@
                         outbid = true;
                         break;
                     }
-                }
+                } 
 
                 con.close();
                 if (outbid) {
