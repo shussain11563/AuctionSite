@@ -17,7 +17,7 @@
 <a href="createAuctionPage.jsp">Create Auction</a> 
 <a href="bids.jsp">Your Bids</a> 
 <a href="createManualBidPage.jsp">Create Bid</a> 
-
+ 
 
 	<%
 	try {
