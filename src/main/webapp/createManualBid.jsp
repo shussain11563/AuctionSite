@@ -133,7 +133,7 @@
 								
 								if(currentValue<requested_bid_price && requested_bid_price>upperLimit)
 								{
-									out.print("You are now the highest bid!"); //alert
+									out.print("You are now the highest bid!&nbsp"); //alert
 									float newPrice = upperLimit + (float)0.50;
 									String insertAuction = "INSERT INTO manual_bid(username, bid_id, bid_val, upper_limit)" + "VALUES (?, ?, ?, ?)";
 									PreparedStatement ps3 = con.prepareStatement(insertAuction);
@@ -174,7 +174,7 @@
 								}
 								else if(currentValue<requested_bid_price && requested_bid_price<upperLimit)
 								{
-									out.print("Sorry, you have been outbid!"); //alert
+									out.print("Sorry, you have been outbid!&nbsp"); //alert
 									float newPrice = requested_bid_price+(float)0.5;
 									
 									
@@ -217,7 +217,7 @@
 								}
 								else if(requested_bid_price==upperLimit)
 								{
-									out.print("Sorry, you have been outbid! Please enter more than $"+upperLimit);
+									out.print("Sorry, you have been outbid! Please enter more than $"+upperLimit + "!&nbsp");
 									
 									String insertAuction = "INSERT INTO manual_bid(username, bid_id, bid_val, upper_limit)" + "VALUES (?, ?, ?, ?)";
 									float newPrice = upperLimit-(float)0.01;
@@ -255,7 +255,7 @@
 								{
 									if(uname.equals(highestBidder))
 									{
-										out.print("You are still the highest bid!");
+										out.print("You are still the highest bid!&nbsp");
 										String update = "UPDATE manual_bid SET upper_limit = ?  where bid_id = ? and username = ?";
 										PreparedStatement ps = con.prepareStatement(update);
 										ps.setFloat(1, requested_bid_price);
@@ -265,7 +265,7 @@
 									}
 									else
 									{
-										out.print("You are now the highest bid!"); //alert
+										out.print("You are now the highest bid!&nbsp"); //alert
 										String update =  "UPDATE manual_bid SET bid_val = ? upper_limit=? where bid_id = ? and username = ?";
 										float newPrice = upperLimit + (float)0.50;
 										PreparedStatement ps = con.prepareStatement(update);
@@ -305,13 +305,13 @@
 								{
 									if(uname.equals(highestBidder))
 									{
-										String output = "Please enter more than $"  + upperLimit;
+										String output = "Please enter more than $"  + upperLimit + "!&nbsp";
 										out.print(output);
 		
 									}
 									else
 									{
-										out.print("Sorry, you have been outbid!");
+										out.print("Sorry, you have been outbid!&nbsp");
 										float newPrice = requested_bid_price+(float)0.5;
 										
 										
@@ -352,13 +352,13 @@
 								{
 									if(uname.equals(highestBidder))
 									{
-										String output = "Please enter more than $"  + upperLimit;
+										String output = "Please enter more than $"  + upperLimit + "&nbsp";
 										out.print(output);
 		
 									}
 									else
 									{
-										out.print("Sorry, you have been outbid! Please enter more than $"+upperLimit);
+										out.print("Sorry, you have been outbid! Please enter more than $"+upperLimit + "!&nbsp");
 										float newPrice = upperLimit-(float)0.01;
 										String update =  "UPDATE manual_bid SET bid_val = ? where bid_id = ? and username = ?";
 										PreparedStatement ps = con.prepareStatement(update);
