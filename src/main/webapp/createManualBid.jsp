@@ -102,6 +102,9 @@
 			
 			while (rs2.next()) //checks if auction exists
 			{
+				if (rs2.getString("winner") != null){
+					break;
+				}	
 				
 				//asks user to enter a value greater than the current value
 				if(currentValue>requested_bid_price)
