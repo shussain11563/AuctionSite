@@ -118,7 +118,7 @@
 				{
 					float validPrice = currentValue+(float)0.5;
 					out.print("Please enter more than $"  + validPrice);
-					condition=-1;
+					condition=1;
 					break;
 				}
 				String winner = rs2.getString("winner");
