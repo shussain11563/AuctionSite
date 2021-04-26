@@ -99,7 +99,7 @@
         ApplicationDB db = new ApplicationDB();
         Connection conn = db.getConnection();
         try {
-            String[] queryWords = request.getParameter("query").strip().split("\\s+");
+            String[] queryWords = request.getParameter("q").strip().split("\\s+");
             StringBuilder str = new StringBuilder("select * from bid_selling_offers b, clothing c where c.title like '%" +
                     queryWords[0] + "%'");
             for (int i = 1; i < queryWords.length; i++) {
