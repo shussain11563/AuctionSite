@@ -213,7 +213,7 @@
 									}
 									
 									
-									
+									 
 								}
 								else if(requested_bid_price==upperLimit)
 								{
