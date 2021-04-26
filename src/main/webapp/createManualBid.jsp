@@ -106,7 +106,7 @@
 			java.sql.Time currentTimeTemp = java.sql.Time.valueOf(currentTimeStr);
 			java.sql.Time currentTime = java.sql.Time.valueOf(currentTimeTemp.toLocalTime());
 	
-			
+			 
 			while (rs2.next()) //checks if auction exists
 			{
 				if (rs2.getString("winner") != null){
